@@ -34,3 +34,42 @@ java -jar "yourappname.jar"
 - You can change the base url of your app from "/" eg server.servlet.context-path = /myappdomain
 - security properties - you can change username and password
 - data source properties
+
+### Spring Container primary functions
+- Create and manage objects(inversion of control)
+- Inject object dependencies (dependency injection)
+
+#### Dependency Injection overview
+- injecting helper components for a given object
+
+```
+Injection Types
+1. Constructor Injection - used when you have required dependencies
+2. Setter Injection - optional dependencies
+```
+
+### Spring Auto wiring
+For dependency injection, spring uses auto wiring
+
+```
+@Component  - Marks the class as spring bean
+            - Makes the bean available for dependency injection
+            - Spring looks for this annotations and registers them in the container
+            
+```
+
+```
+@SpringBootApplication 
+- @EnableAutoConfiguration
+- @ComponentScan
+- @Configuration
+- creates application context, starts the beans and enables the server
+
+- Component scanning works better if its under main application package
+
+- For packages outside, you explicitly tell spring to scan in the @SpringBootApplication
+            
+```
+
+### Setter Injection
+- If dependency not provided, you can provide reasonable default logic
