@@ -73,3 +73,12 @@ For dependency injection, spring uses auto wiring
 
 ### Setter Injection
 - If dependency not provided, you can provide reasonable default logic
+
+### Auto wiring and Qualifiers
+```
+@Qualifier - when an interface is implemented by many beans
+- When you want to use a given bean at a moment
+
+eg
+@Qualifier("id_name")
+```
