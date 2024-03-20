@@ -19,7 +19,7 @@ public class FunRestController {
     private Player player;
 
     @Autowired
-    public FunRestController(@Qualifier("baseballCoach")  Coach myCoach) {
+    public FunRestController(Coach myCoach) {
         this.myCoach = myCoach;
     }
 

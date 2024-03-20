@@ -82,3 +82,9 @@ For dependency injection, spring uses auto wiring
 eg
 @Qualifier("id_name")
 ```
+
+### Primary Annotation
+Specifies primary implementation that should be used
+Alternative way to use @Qualifier
+
+Mixing primary and qualifier, the qualifier annotation is given the highest priority
