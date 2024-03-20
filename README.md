@@ -3,6 +3,7 @@
 ## [Spring Documentation](http://www.spring.io)
 
 ### Spring boot actuator
+
 Helps metrics and monitoring application
 Endpoints prefixed with /actuator
 
@@ -11,9 +12,10 @@ Endpoints prefixed with /actuator
 - To update in application.properties to customize begins with '.info'
 
 ### Spring boot security
+
 - Used for securing endpoints
 
-### Running Spring boot from command line 
+### Running Spring boot from command line
 
 ```dbn-psql
 ./mvnw package -> creates jar file
@@ -22,13 +24,16 @@ java -jar "yourappname.jar"
 ```
 
 ### Application Properties File
+
 - inject properties using @value annotation
 - To access
+
 ```dbn-psql
 @Value("${dev.name}")
 ```
 
 ### Spring boot properties
+
 - spring boot props -> documentation
 - You can change port eg server.port = 7070
 - You can change the base url of your app from "/" eg server.servlet.context-path = /myappdomain
@@ -36,10 +41,12 @@ java -jar "yourappname.jar"
 - data source properties
 
 ### Spring Container primary functions
+
 - Create and manage objects(inversion of control)
 - Inject object dependencies (dependency injection)
 
 #### Dependency Injection overview
+
 - injecting helper components for a given object
 
 ```
@@ -49,17 +56,18 @@ Injection Types
 ```
 
 ### Spring Auto wiring
+
 For dependency injection, spring uses auto wiring
 
 ```
 @Component  - Marks the class as spring bean
             - Makes the bean available for dependency injection
             - Spring looks for this annotations and registers them in the container
-            
+
 ```
 
 ```
-@SpringBootApplication 
+@SpringBootApplication
 - @EnableAutoConfiguration
 - @ComponentScan
 - @Configuration
@@ -68,13 +76,15 @@ For dependency injection, spring uses auto wiring
 - Component scanning works better if its under main application package
 
 - For packages outside, you explicitly tell spring to scan in the @SpringBootApplication
-            
+
 ```
 
 ### Setter Injection
+
 - If dependency not provided, you can provide reasonable default logic
 
 ### Auto wiring and Qualifiers
+
 ```
 @Qualifier - when an interface is implemented by many beans
 - When you want to use a given bean at a moment
@@ -84,7 +94,42 @@ eg
 ```
 
 ### Primary Annotation
+
 Specifies primary implementation that should be used
 Alternative way to use @Qualifier
 
 Mixing primary and qualifier, the qualifier annotation is given the highest priority
+
+### Lazy Initialization
+
+When application loads, all beans are loaded
+Through lazy initialization bean will be loaded only:
+
+- Needed for dependency injection
+- Explicitly requested
+
+@Lazy
+
+
+### Lazy initialization - Global
+- application.properties
+- spring.main.lazy-initialization = true
+
+## Bean scope
+By default they are created in singleton
+
+- You can change to prototype where new instance is created
+
+- @Scope(ConfigurationBeanFactory.SCOPE_PROTOTYPE)
+
+### Bean Lifecycle Methods
+
+- Init method configuration
+- Use annotation - @PostConstruct  - //init method
+
+- @PreDestroy - when destroying bean - //destroy method
+
+## Use case for @Bean annotation
+- They do not @Component annotation
+- Make an existing third party class available to the spring framework
+- eg when working with aws s3 storage
