@@ -133,3 +133,45 @@ By default they are created in singleton
 - They do not @Component annotation
 - Make an existing third party class available to the spring framework
 - eg when working with aws s3 storage
+
+## JPA
+### Id Generation strategies
+GenerationType.AUTO  - Picks appropriate strategy for particular db
+GenerationType.Identity  - uses db identity column - recommended
+GenerationType.SEQUENCE  - uses db sequence
+GenerationType.TABLE  - Assign primary key using db table
+
+#### JPQL
+Uses entity name and field instead of db columns
+
+#### Named parameters jpql
+- Query parameters are a way to build and execute parameterized queries. So, instead of:
+
+```
+SELECT * FROM employees e WHERE e.emp_number = '123';
+```
+
+- we use
+
+```
+SELECT * FROM employees e WHERE e.emp_number = ?;
+
+```
+
+- using jpa named parameters
+
+```
+TypedQuery<Employee> query = em.createQuery(
+  "SELECT e FROM Employee e WHERE e.empNumber = :number" , Employee.class);
+
+  number - placeholder
+
+String empNumber = "A123";
+Employee employee = query.setParameter("number", empNumber).getSingleResult();
+```
+
+Updating db column you use "entityManager.merge()"
+
+when writing or creating a query you use  - executeUpdate()
+
+'update' - used when modifying a db
