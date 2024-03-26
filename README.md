@@ -175,3 +175,12 @@ Updating db column you use "entityManager.merge()"
 when writing or creating a query you use  - executeUpdate()
 
 'update' - used when modifying a db
+
+## Http Status Code
+```
+100 - 199     - Informational
+200 - 299     - Success
+300 - 399     - Redirectional
+400 - 499     - Client error
+500 - 599     - Server error
+```
