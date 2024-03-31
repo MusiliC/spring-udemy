@@ -184,3 +184,17 @@ when writing or creating a query you use  - executeUpdate()
 400 - 499     - Client error
 500 - 599     - Server error
 ```
+
+## Global exception Handling
+### @ControllerAdvice
+A controller advice allows you to use exactly the same exception handling techniques but apply them across the whole application, not just to an individual controller. You can think of them as an annotation driven interceptor.
+
+## Api Best Practices
+api/employees - GET, POST
+api/employees/{employeeId} - PUT, DELETE, GET ONE EMPLOYEE
+api/students
+ - Always use plural form
+
+ ## Anti Patterns
+ api/employees/addEmployee
+ api/employees/getEmployees
