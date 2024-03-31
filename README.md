@@ -198,3 +198,9 @@ api/students
  ## Anti Patterns
  api/employees/addEmployee
  api/employees/getEmployees
+
+ ### @Service
+ Applied to service implementations
+ 
+ ## Spring Data Rest
+ To customize you use application.properties
