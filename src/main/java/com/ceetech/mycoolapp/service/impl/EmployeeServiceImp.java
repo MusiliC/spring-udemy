@@ -3,17 +3,18 @@ package com.ceetech.mycoolapp.service.impl;
 import java.util.List;
 import java.util.Optional;
 
-import javax.management.RuntimeErrorException;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import com.ceetech.mycoolapp.dao.EmployeeDao;
+
 import com.ceetech.mycoolapp.entity.Employee;
 import com.ceetech.mycoolapp.repository.EmployeeRepository;
 import com.ceetech.mycoolapp.service.EmployeeService;
 
-import jakarta.transaction.Transactional;
 
+@Service
 public class EmployeeServiceImp implements EmployeeService {
 
     // private EmployeeDao employeeDao;

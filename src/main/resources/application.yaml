@@ -1,6 +1,10 @@
 server:
   port: 8080
 spring:
+  security:
+    user:
+      name: "Cee"   
+      password: "1234"
   datasource:
     url: jdbc:mysql://localhost:3306/employeedb
     username: root

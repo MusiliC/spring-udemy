@@ -204,3 +204,22 @@ api/students
  
  ## Spring Data Rest
  To customize you use application.properties
+
+ ## Spring Security
+ ## Restricting Access Roles
+ -  requestMatchers(method, path)
+ - hasRoles/ hasAnyRole
+
+ ```
+ You use SecurityFIlterChain - method declared as bean
+ To filter
+ ```
+
+ ### Cross-Site Request Forgery(CSFR)
+ - Its disabled
+ Not required for requests that use POST,PUT, DELETE or PATCH
+
+ When to use: 
+ - Any normal browser based web request
+
+ - When building REST API for non browser clients - disable the CSFR
