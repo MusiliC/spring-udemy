@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Customer Validation</title>
+    <style>
+      .error {
+        color: red;
+      }
+    </style>
+    <link rel="stylesheet" th:href="@{/css/demo.css}" />
+  </head>
+  <body>
+    <br />
+    <br />
+    <form th:action="@{/processform}" th:object="${customer}" method="post">
+      <label for="fname">First name:</label><br />
+      <input type="text" id="fname" th:field="*{firstName}" /><br />
+      <label for="lname">Last name:</label><br />
+      <input type="text" id="lne" th:field="*{lastName}" />
+      <br />
+      <label for="lname">Free passes:</label><br />
+      <input type="text" id="lname" th:field="*{freePasses}" />
+      <br />
+      <label for="lname">Postal Code:</label><br />
+      <input type="text" id="regex" th:field="*{postalCode}" />
+      <br />
+      <!-- Add error message if present -->
+      <p
+        th:if="${#fields.hasErrors('lastName')}"
+        th:errors="*{lastName}"
+        class="error"
+      ></p>
+
+      <p
+        th:if="${#fields.hasErrors('freePasses')}"
+        th:errors="*{freePasses}"
+        class="error"
+      ></p>
+
+      <p
+              th:if="${#fields.hasErrors('postalCode')}"
+              th:errors="*{postalCode}"
+              class="error"
+      ></p>
+      
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
