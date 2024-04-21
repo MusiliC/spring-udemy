@@ -1,8 +1,11 @@
 package com.ceetech.mycoolapp.entity;
 
+import com.ceetech.mycoolapp.validation.CourseCode;
+
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @AllArgsConstructor
@@ -29,6 +32,11 @@ public class Customer {
     @Getter
     @Pattern(regexp = "^[a-zA-Z0-9]{5}", message = "Only 5 characters needed")
     private String postalCode;
+
+    @Setter
+    @Getter
+    @CourseCode
+    private String courseCode;
 
     public Customer(String firstName, String lastName) {
         this.firstName = firstName;

@@ -223,3 +223,35 @@ api/students
  - Any normal browser based web request
 
  - When building REST API for non browser clients - disable the CSFR
+
+## Thymeleaf
+ - Templating engine for generating html views
+ - Add its maven dependency
+ - You use @controller instead of @RestController
+ - Return the html page to view
+ - Located in resources under templates
+
+
+## Spring Validations
+- Add validation support dependency
+  - Making field REQUIRED - "@NotNull"
+  - Size (min = 1, max = 5, message ="Min value is ....")
+```angular2html
+@initBinder annotation
+
+To convert trim input strings
+Removes leading and trailing whitespace
+Create a method that accepts Webdatabinder as an argument
+The method is created in the controller and is called for all requests in the controller
+
+```
+
+#### Number Validator
+- @Min(value = 0, message= "Must be greater than 0')
+- @Max(value = 10, message= "Must be less than 10')
+
+#### Regular Expressions
+- @Pattern(regexp = '^[a-zA-Z0-9]{5}', message = 'only 5 char/digits')
+
+### Spring Custom Validations
+- You create annotation with value and message to hold incase of error
