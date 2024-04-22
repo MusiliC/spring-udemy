@@ -8,7 +8,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/employeedb
     username: root
-    password: makutano
+    password: Mysql@254
   application:
     name: product-service
   jpa:

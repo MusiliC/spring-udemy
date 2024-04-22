@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +42,7 @@ public class EmployeeServiceImp implements EmployeeService {
         if (result.isPresent()) {
 
             theEmployee = result.get();
-        }else{
+        } else {
             throw new RuntimeException("Did not find employee");
         }
         return theEmployee;
