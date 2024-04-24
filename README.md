@@ -255,3 +255,32 @@ The method is created in the controller and is called for all requests in the co
 
 ### Spring Custom Validations
 - You create annotation with value and message to hold incase of error
+
+
+## Advanced Mapping
+### Cascading
+- Applying same operations to the related entities
+
+- @manytomany - Never use cascade_delete
+
+### Eager vs Lazy
+- Eager - retrieves everything
+- Lazy - retrieves on request
+
+## Cascade Types
+1. Persist
+   - If entity is saved related entity also saved
+
+2. Remove
+   - If entity is removed related entity also removed
+
+3. Refresh
+    - If entity is refreshed related entity also refreshed
+
+4. Merge
+    - If entity is merged related entity also merged
+5. All
+    - Applies to all entity types of the above
+
+### Bidirectional onetoone
+- You add @mappedBy(fieldName of foreign key entity)
