@@ -35,4 +35,8 @@ public class InstructorDetail {
 
     @OneToOne(mappedBy = "instructorDetail", cascade = CascadeType.ALL)
     private  Instructor instructor;
+
+//    @OneToOne(mappedBy = "instructorDetail", cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+//    private  Instructor instructor;
+    //For the above cascade type it will only delete the instructorDetail id without deleting instructor
 }

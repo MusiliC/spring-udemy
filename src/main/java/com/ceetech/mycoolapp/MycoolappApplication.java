@@ -2,6 +2,7 @@ package com.ceetech.mycoolapp;
 
 import com.ceetech.mycoolapp.entity.Instructor;
 import com.ceetech.mycoolapp.entity.InstructorDetail;
+import com.ceetech.mycoolapp.service.InstructorDetailsService;
 import com.ceetech.mycoolapp.service.InstructorService;
 import java.util.Optional;
 import org.springframework.boot.CommandLineRunner;
@@ -19,12 +20,29 @@ public class MycoolappApplication {
         SpringApplication.run(MycoolappApplication.class, args);
     }
 
+  //  @Bean
+//    public CommandLineRunner commandLineRunner(InstructorService instructorService) {
+//        return runner -> {
+//           // createInstructor(instructorService);
+//            getInstructorById(instructorService);
+//        };
+//    }
+
     @Bean
-    public CommandLineRunner commandLineRunner(InstructorService instructorService) {
+    public CommandLineRunner commandLineRunner(InstructorDetailsService instructorService) {
         return runner -> {
-           // createInstructor(instructorService);
-            getInstructorById(instructorService);
+            // createInstructor(instructorService);
+           getInstructorDetailById(instructorService);
         };
+    }
+
+    private void getInstructorDetailById(InstructorDetailsService instructorDetailsService) {
+        Integer id = 1;
+        Optional<InstructorDetail> instructorById = instructorDetailsService.findById(id);
+
+        System.out.println("InstructorDetail found: " + instructorById.get().getHobby());
+
+        System.out.println("Associated instructor found: " + instructorById.get().getInstructor().getFirstName());
     }
 
     private void getInstructorById(InstructorService instructorService) {
@@ -33,7 +51,7 @@ public class MycoolappApplication {
 
         System.out.println("Instructor found: " + instructorById.get().getFirstName());
 
-        System.out.println("Associated instructor details found: " + instructorById.get().getInstructorDetail());
+        //System.out.println("Associated instructor details found: " + instructorById.get().getInstructorDetail());
     }
 
     private void createInstructor(InstructorService instructorService) {
