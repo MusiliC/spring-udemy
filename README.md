@@ -284,3 +284,26 @@ The method is created in the controller and is called for all requests in the co
 
 ### Bidirectional onetoone
 - You add @mappedBy(fieldName of foreign key entity)
+
+
+### Bidirectional onetomany
+
+- In a bidirectional relationship, we can obtain information about two related entities by querying each one separately.
+
+```angular2html
+@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
+
+@OneToMany(fetch = FetchType.LAZY, mappedBy = "owner", cascade = CascadeType.ALL)
+private List<Blog> blogList;
+    
+Using "mappedBy" creates it to be bi-directional    
+
+```
+
+### Default Fetch Types
+- @OneToOne - Eager
+- @OneToMany - Lazy
+- @ManyToOne - Eager
+- @ManyToMany - Lazy
