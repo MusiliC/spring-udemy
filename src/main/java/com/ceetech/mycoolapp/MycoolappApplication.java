@@ -3,8 +3,10 @@ package com.ceetech.mycoolapp;
 import com.ceetech.mycoolapp.entity.Course;
 import com.ceetech.mycoolapp.entity.Instructor;
 import com.ceetech.mycoolapp.entity.InstructorDetail;
+import com.ceetech.mycoolapp.service.CourseService;
 import com.ceetech.mycoolapp.service.InstructorDetailsService;
 import com.ceetech.mycoolapp.service.InstructorService;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,23 +31,43 @@ public class MycoolappApplication {
 //        };
 //    }
 
+//    @Bean
+//    public CommandLineRunner commandLineRunner(InstructorService instructorService) {
+//        return runner -> {
+//           // createInstructorWithCourse(instructorService);
+//           // retrieveInstructorWithCourses(instructorService);
+//        };
+//    }
+
     @Bean
-    public CommandLineRunner commandLineRunner(InstructorService instructorService) {
+    public CommandLineRunner commandLineRunner(InstructorService instructorService,CourseService courseService) {
         return runner -> {
-           // createInstructorWithCourse(instructorService);
-            retrieveInstructorWithCourses(instructorService);
+            findCoursesForInstructor(instructorService,courseService);
         };
     }
 
-    private void retrieveInstructorWithCourses(InstructorService instructorService) {
+    private void findCoursesForInstructor(InstructorService instructorService,CourseService courseService) {
+      Instructor instructor = retrieveInstructorWithCourses(instructorService);
+
+      List<Course> courses = courseService.findByCourseByInstructorId(instructor.getId());
+
+        System.out.println("Found " + courses.size() + " courses");
+        System.out.println(courses.size());
+
+    }
+
+
+    private Instructor retrieveInstructorWithCourses(InstructorService instructorService) {
 
         Integer id = 1;
-       Optional<Instructor> instructorById = instructorService.findInstructorById(id);
+       Optional<Instructor> instructor = instructorService.findInstructorById(id);
 
        // System.out.println(instructorById.get());
-        System.out.println("Instructor with courses found: " + instructorById.get().getCourses());
+        System.out.println("Instructor with courses found: " + instructor.get().getFirstName());
 
-        System.out.println("Done");
+        return instructor.get();
+
+
     }
 
 //    private void createInstructorWithCourse(InstructorService instructorService) {
