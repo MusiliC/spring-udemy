@@ -8,4 +8,6 @@ public interface InstructorService {
     Instructor saveInstructor(Instructor instructor);
 
     Optional<Instructor> findInstructorById(Integer id);
+
+    Instructor findInstructorByFetchJoin(Integer id);
 }

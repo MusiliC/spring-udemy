@@ -23,13 +23,23 @@ public class MycoolappApplication {
         SpringApplication.run(MycoolappApplication.class, args);
     }
 
-//    @Bean
-//    public CommandLineRunner commandLineRunner(InstructorService instructorService) {
-//        return runner -> {
-//            //createInstructor(instructorService);
-//            getInstructorById(instructorService);
-//        };
-//    }
+    @Bean
+    public CommandLineRunner commandLineRunner(InstructorService instructorService) {
+        return runner -> {
+            //createInstructor(instructorService);
+           // getInstructorById(instructorService);
+            findInstructorWithCourseJoinFetch(instructorService);
+        };
+    }
+
+    private void findInstructorWithCourseJoinFetch(InstructorService instructorService) {
+                Integer id = 1;
+        Instructor instructorById = instructorService.findInstructorByFetchJoin(id);
+
+        System.out.println("Instructor found: " + instructorById.getFirstName() + " " + instructorById.getLastName());
+        System.out.println("All courses: " + instructorById.getCourses().size());
+
+    }
 
 //    @Bean
 //    public CommandLineRunner commandLineRunner(InstructorService instructorService) {
@@ -39,12 +49,12 @@ public class MycoolappApplication {
 //        };
 //    }
 
-    @Bean
-    public CommandLineRunner commandLineRunner(InstructorService instructorService,CourseService courseService) {
-        return runner -> {
-            findCoursesForInstructor(instructorService,courseService);
-        };
-    }
+//    @Bean
+//    public CommandLineRunner commandLineRunner(InstructorService instructorService,CourseService courseService) {
+//        return runner -> {
+//            findCoursesForInstructor(instructorService,courseService);
+//        };
+//    }
 
     private void findCoursesForInstructor(InstructorService instructorService,CourseService courseService) {
       Instructor instructor = retrieveInstructorWithCourses(instructorService);

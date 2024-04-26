@@ -26,4 +26,9 @@ public class InstructorServiceImpl implements InstructorService {
     public Optional<Instructor> findInstructorById(Integer id) {
         return Optional.ofNullable(instructorRepository.findById(id).orElse(null));
     }
+
+    @Override
+    public Instructor findInstructorByFetchJoin(Integer id) {
+        return  instructorRepository.findInstructorByFetchJoin(id);
+    }
 }
