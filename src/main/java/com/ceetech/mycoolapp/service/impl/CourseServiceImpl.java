@@ -19,4 +19,14 @@ public class CourseServiceImpl implements CourseService {
     public List<Course> findByCourseByInstructorId(Integer id) {
         return courseRepository.findByCourseByInstructorId(id);
     }
+
+    @Override
+    public void save(Course course) {
+    courseRepository.save(course);
+    }
+
+    @Override
+    public Course findById(Integer id) {
+       return courseRepository.findCourseByFetchJoin(id);
+    }
 }

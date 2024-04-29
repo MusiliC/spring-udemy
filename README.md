@@ -307,3 +307,12 @@ Using "mappedBy" creates it to be bi-directional
 - @OneToMany - Lazy
 - @ManyToOne - Eager
 - @ManyToMany - Lazy
+
+### Delete oneToMany
+
+If you want delete the instructor and not courses, before deleting you map to all courses by
+that instructor and setInstructor to null then delete - breaking the chain
+
+- Get all the courses
+- for loop in the courses and for each course set instructor null
+- Then delete

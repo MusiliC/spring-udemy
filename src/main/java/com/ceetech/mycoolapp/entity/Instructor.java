@@ -50,7 +50,6 @@ public class Instructor {
             CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH
     })
     private List<Course> courses;
-
     //add convenience method for bi-directional relationship
 
     public  void  add(Course course){
