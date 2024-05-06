@@ -11,4 +11,6 @@ public interface CourseService {
     void save(Course course);
 
     Course findById(Integer id);
+
+    Course findCourseAndStudentById(Integer id);
 }

@@ -4,9 +4,11 @@ import com.ceetech.mycoolapp.entity.Course;
 import com.ceetech.mycoolapp.entity.Instructor;
 import com.ceetech.mycoolapp.entity.InstructorDetail;
 import com.ceetech.mycoolapp.entity.Review;
+import com.ceetech.mycoolapp.entity.Student;
 import com.ceetech.mycoolapp.service.CourseService;
 import com.ceetech.mycoolapp.service.InstructorDetailsService;
 import com.ceetech.mycoolapp.service.InstructorService;
+import com.ceetech.mycoolapp.service.StudentService;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.boot.CommandLineRunner;
@@ -48,12 +50,89 @@ public class MycoolappApplication {
 //        };
 //    }
 
+
+//
+//    @Bean
+//    public CommandLineRunner commandLineRunner(CourseService courseService) {
+//        return runner -> {
+//           // createCourseAndReviews(courseService);
+//            findCourseJoinFetch(courseService);
+//        };
+//    }
+
     @Bean
-    public CommandLineRunner commandLineRunner(CourseService courseService) {
+    public CommandLineRunner commandLineRunner(CourseService courseService, StudentService studentService) {
         return runner -> {
-           // createCourseAndReviews(courseService);
-            findCourseJoinFetch(courseService);
+            //  createCourseAndStudents(courseService,studentService);
+            //findCourseJoinStudent(courseService, studentService);
+           // findStudentJoinCourse(studentService, courseService);
+            updateStudent(studentService, courseService);
         };
+    }
+
+    private void findStudentJoinCourse(StudentService studentService, CourseService courseService) {
+        Integer studentId = 1;
+
+        List<Student> students = studentService.findStudentAndCourseByStudentId(studentId);
+
+        students.stream().map(student -> {
+            String fullName = student.getFirstName() + " " + student.getLastName() + " " + student.getId();
+            return  fullName;
+        }).forEach(student -> {});
+    }
+
+    private void findCourseJoinStudent(CourseService courseService, StudentService studentService) {
+        Integer courseId = 10;
+        Course course = courseService.findCourseAndStudentById(courseId);
+
+        System.out.println("Loaded course " + course.getTitle());
+
+        System.out.println("Associated students");
+
+        System.out.println("Student names:");
+        course.getStudents().stream().map(student -> {
+            String fullName = student.getFirstName() + " " + student.getLastName();
+            System.out.println(fullName); // Print the full name
+            return fullName; // Return the full name to be further processed if needed
+        }).forEach(fullName -> {
+        }); // Terminal operation, needed to trigger stream processing
+    }
+
+    private  void  updateStudent(StudentService studentService, CourseService courseService) {
+        Course tempCourse2 = Course.builder().title("Course2").build();
+        Course tempCourse3 = Course.builder().title("Course3").build();
+
+        //findStudent and add more courses
+        Integer studentId = 1;
+        Student studentWithId1 = studentService.findStudentById(studentId);
+        studentWithId1.addCourse(tempCourse2);
+        studentWithId1.addCourse(tempCourse3);
+    }
+
+    private void createCourseAndStudents(CourseService courseService, StudentService studentService) {
+        //create course
+        Course tempCourse = Course.builder().title("Many to many").build();
+
+
+
+
+        //create student
+
+        Student tempStudent = Student.builder().firstName("Elijah").lastName("Kamotho").email("eli@gmail.com").build();
+        Student tempStudentTwo = Student.builder().firstName("Dun").lastName("Omo").email("dun@gmail.com").build();
+
+
+
+        //add student to course
+
+        tempCourse.addStudent(tempStudent);
+        tempCourse.addStudent(tempStudentTwo);
+
+        //save course and associated student
+
+        System.out.println("Saving course " + tempCourse);
+        courseService.save(tempCourse);
+        System.out.println("Both students saved");
     }
 
 //    private void createCourseAndReviews(CourseService courseService) {
@@ -80,9 +159,9 @@ public class MycoolappApplication {
 //
 //    }
 
-        private void findCourseJoinFetch(CourseService courseService) {
+    private void findCourseJoinFetch(CourseService courseService) {
         Integer id = 10;
-      Course course = courseService.findById(id);
+        Course course = courseService.findById(id);
 
         System.out.println("Course found: " + course.getTitle());
         System.out.println("All reviews: " + course.getReviews());

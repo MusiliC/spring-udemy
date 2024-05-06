@@ -29,4 +29,9 @@ public class CourseServiceImpl implements CourseService {
     public Course findById(Integer id) {
        return courseRepository.findCourseByFetchJoin(id);
     }
+
+    @Override
+    public Course findCourseAndStudentById(Integer id) {
+        return courseRepository.findByCourseAndStudentByCourseId(id);
+    }
 }
